@@ -2,6 +2,7 @@
 title: '[React] KOA 서버사이드 렌더링 '
 date: 2019-8-31 16:21:13
 category: react
+image: './images/client-side-vs-server-side.png'
 ---
 
 ## SSR(Server Side Rendering)?

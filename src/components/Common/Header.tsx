@@ -1,14 +1,14 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-//import { UserLogo } from '../../modules/header';
 import HeaderLogo from './HeaderLogo';
-//import media from '../../lib/styles/media';
-import { IoMdTime } from 'react-icons/io';
-import { FiEdit } from 'react-icons/fi';
 import { breakpoints } from '../../lib/styles/responsive';
 import media from '../../lib/styles/media';
+import zIndexes from '../../lib/styles/zIndexes';
+
 const HeaderBlock = styled.div<{ floating: boolean }>`
-  font-family: Fira Mono, monospace;
+  z-index: ${zIndexes.Header};
+  font-family: 'NanumSquareRound', source-code-pro, Menlo, Monaco, Consolas,
+    'Courier New', monospace;
   width: 100%;
   > .wrapper {
     width: ${breakpoints.xlarge};
@@ -46,6 +46,9 @@ const HeaderBlock = styled.div<{ floating: boolean }>`
       display: flex;
       align-items: center;
     }
+    .right {
+      font-weight: bold;
+    }
   }
 
   ${props =>
@@ -79,7 +82,7 @@ const Header: React.FC<HeaderProps> = ({ floating, floatingMargin }) => {
           <div className="brand">
             <HeaderLogo logoTitle="songc" />
           </div>
-          <div className="right"></div>
+          <div className="right">about</div>
         </div>
       </HeaderBlock>
       {floating && <Placeholder />}

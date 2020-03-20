@@ -5,20 +5,22 @@ import media from '../../lib/styles/media';
 import '../../typography.css';
 const MainTemplateBlock = styled(PageTemplate)`
   main {
-    width: 1200px;
+    display: flex;
+    margin-top: 2rem;
+    /* width: 1200px;
     ${media.large} {
       width: 1024px;
     }
     margin: 0 auto;
     margin-top: 3.5rem;
     margin-bottom: 8rem;
-    display: flex;
+    flex: 1;
     justify-content: space-between;
     ${media.medium} {
       justify-content: center;
       width: 100%;
       margin-top: 1rem;
-    }
+    } */
   }
 `;
 export interface MainTemplateProps {}
@@ -34,7 +36,8 @@ const Left = styled.div`
   }
 `;
 const Main = styled.div`
-  width: 702px;
+  flex: 1;
+  width: 1200px;
   ${media.large} {
     width: 526px;
   }

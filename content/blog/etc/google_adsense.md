@@ -33,9 +33,9 @@ category: 'etc'
 
 ### 2. 구글 에드센스 승인
 
-**제공하는 <script> 태그 삽입**
+**제공하는 "script 태그 삽입**
 
-- [step 1] 제공하는 <script> 원하는 곳에 블로그 페이지 적용 후 신청 (승인 이메일이 올때까지 기다린다)
+- [step 1] 제공하는 "`script`" 원하는 곳에 블로그 페이지 적용 후 신청 (승인 이메일이 올때까지 기다린다)
 
   ```html
   <script
@@ -67,18 +67,15 @@ category: 'etc'
   ![](./images/adsense/adsense_5.png)
 
   ```html
-  <script
-    async
-    src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
-  ></script>
+  
+  <script src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" />
   <!-- PC_Bottom_auto -->
   <!-- head -->
   <ins
     class="adsbygoogle"
     style="display:inline-block;width:970px;height:90px"
     data-ad-client="ca-pub-#######"
-    data-ad-slot="######"
-  ></ins>
+    data-ad-slot="######" />
   <script>
     ;(adsbygoogle = window.adsbygoogle || []).push({})
   </script>

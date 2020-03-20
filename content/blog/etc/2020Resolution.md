@@ -2,6 +2,7 @@
 title: '나는 어떤 글을 쓰게 될까? 🧐(feat 글또)'
 date: 2020-03-01 13:09:88
 category: etc
+image: './images/2020/background.png'
 ---
 
 ## 2020 Blog plan

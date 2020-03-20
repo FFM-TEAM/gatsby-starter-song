@@ -28,14 +28,6 @@ export default function attacher({ include, exclude } = {}) {
   function visitor(node) {
     let { lang, data } = node;
 
-    // if (
-    //   !lang ||
-    //   (include && include.indexOf(lang) === -1) ||
-    //   (exclude && exclude.indexOf(lang) !== -1)
-    // ) {
-    //   return;
-    // }
-
     if (!data) {
       data = {};
       node.data = data;
@@ -54,15 +46,6 @@ export default function attacher({ include, exclude } = {}) {
 
     node.type = 'html';
     node.value = `<pre><code class="language-${lang}">${highlighted}</code></pre>`;
-    // console.log(data);
-    // data.hChildren = '<div>so what?</div>';
-    // data.hChildren =
-    // data.hChildren = low.highlight(lang, node.value).value;
-    // data.hProperties.className = [
-    //   'hljs',
-    //   ...(data.hProperties.className || []),
-    //   'language-' + lang,
-    // ];
   }
   return ast => visit(ast, 'code', visitor);
 }

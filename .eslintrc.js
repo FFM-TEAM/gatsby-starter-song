@@ -1,41 +1,22 @@
 module.exports = {
-  parser: '@typescript-eslint/parser', // Specifies the ESLint parser
-  extends: [
-    'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'prettier/@typescript-eslint',
-    'plugin:prettier/recommended'
-  ],
-  settings: {
-    react: {
-      version: 'detect'
-    }
-  },
-  env: {
-    browser: true,
-    node: true,
-    es6: true
-  },
+  parser: '@typescript-eslint/parser',
+  extends: ['plugin:@typescript-eslint/recommended', 'react-app', 'prettier'],
   plugins: ['@typescript-eslint', 'react'],
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true
-    },
-    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-    sourceType: 'module' // Allows for the use of imports
-  },
   rules: {
-    'react/prop-types': 'off', // Disable prop-types as we use TypeScript for type checking
-    '@typescript-eslint/explicit-function-return-type': 'off'
+    'react/jsx-filename-extension': [
+      1,
+      { extensions: ['.js', '.jsx', 'tsx', 'ts'] },
+    ],
+    '@typescript-eslint/indent': 0,
+    '@typescript-eslint/no-empty-interface': 0,
+    'import/first': 0,
+    '@typescript-eslint/explicit-function-return-type': 0,
+    '@typescript-eslint/explicit-member-accessibility': 0,
+    '@typescript-eslint/prefer-interface': 0,
+    '@typescript-eslint/no-use-before-define': 0,
+    '@typescript-eslint/no-non-null-assertion': 0,
+    '@typescript-eslint/no-explicit-any': 0,
+    'no-use-before-define': 0,
+    '@typescript-eslint/camelcase': 0,
   },
-  overrides: [
-    // Override some TypeScript rules just for .js files
-    {
-      files: ['*.js'],
-      rules: {
-        '@typescript-eslint/no-var-requires': 'off' //
-      }
-    }
-  ]
 };

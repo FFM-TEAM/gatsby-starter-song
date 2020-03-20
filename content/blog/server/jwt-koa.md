@@ -2,6 +2,7 @@
 title: '[Koa] Koa에서 JWT 사용하기'
 date: 2019-09-12 13:09:88
 category: server
+image: './images/jwt/jwt-logo.png'
 ---
 
 ## JWT 란?

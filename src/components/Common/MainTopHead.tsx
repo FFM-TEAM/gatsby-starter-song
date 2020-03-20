@@ -8,28 +8,21 @@ import palette from '../../lib/styles/palette';
 import media from '../../lib/styles/media';
 
 export type MainTopHeadProps = {
-  category: string;
+  categories: any[];
 };
 
-const MainTopHead: React.FC<MainTopHeadProps> = ({ category }) => {
-  console.log(category, 'category');
+const MainTopHead: React.FC<MainTopHeadProps> = ({ categories }) => {
   return (
     <Section>
       <div className="menu">
-        {/* <MenuItem
-          to="/trending"
-          activeClassName="active"
-          isActive={(match, location) =>
-            ['/', '/trending'].includes(location.pathname)
-          }
-        >
-          <FiThumbsUp />
-          EDITOR's PICK
-        </MenuItem> */}
-        <MenuItem to="/recent" activeClassName="active">
-          <FiActivity />
-          {category}
-        </MenuItem>
+        {categories.map(item => {
+          return (
+            <MenuItem to="`/${item}`" activeClassName="active">
+              {item}
+              <FiActivity />
+            </MenuItem>
+          );
+        })}
       </div>
     </Section>
   );

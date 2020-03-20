@@ -2,6 +2,7 @@
 title: '[React] Aws cloud Front Deploy'
 date: 2019-08-15 13:09:88
 category: react
+image: './images/cdn/cloudfront_logo.jpg'
 ---
 
 ## 👨🏻‍💻CloudFront 란?

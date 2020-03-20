@@ -1,20 +1,17 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React from 'react';
 import { Link, graphql } from 'gatsby';
-import _ from 'lodash';
+import { get } from 'lodash';
 
 import '../typography.css';
-import Bio from '../components/bio';
-import Layout from '../components/layout';
-import SEO from '../components/seo';
-import { rhythm } from '../utils/typography';
 import MainTemplate from '../components/Common/MainTemplate';
 import styled, { css } from 'styled-components';
-import { mediaQuery } from '../lib/styles/media';
+import media, { mediaQuery } from '../lib/styles/media';
 import palette from '../lib/styles/palette';
 import { ellipsis } from '../lib/styles/utils';
-import MainTopHead from '../components/Common/MainTopHead';
 import GlobalStyles from '../GlobalStyles';
-import { MarkdownRemarkConnection, ImageSharp } from '../graphql-types';
+import ImageSection from '../components/Common/ImageSection';
+import { defaultImage } from '../static/images';
+// import MainTopHead from '../components/Common/MainTopHead';
 
 interface Props {
   data: {
@@ -27,10 +24,104 @@ interface Props {
   };
 }
 const PostCardBlock = styled.div`
-  flex: none;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  ${media.small} {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  & > a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .user-info {
+    display: flex;
+    align-items: center;
+    img {
+      width: 3rem;
+      height: 3rem;
+      display: block;
+      margin-right: 1rem;
+      background: ${palette.gray0};
+      object-fit: cover;
+      border-radius: 1.5rem;
+      box-shadow: 0px 0 8px rgba(0, 0, 0, 0.1);
+      ${media.small} {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 1rem;
+      }
+    }
+    .username {
+      font-size: 0.875rem;
+      color: ${palette.gray9};
+      font-weight: bold;
+      a {
+        color: inherit;
+        text-decoration: none;
+        &:hover {
+          color: ${palette.gray8};
+        }
+      }
+    }
+    margin-bottom: 1.5rem;
+    ${media.small} {
+      margin-bottom: 0.75rem;
+    }
+  }
+  .post-thumbnail {
+    margin-bottom: 1rem;
+    ${media.small} {
+    }
+  }
+  line-height: 1.5;
+  h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: ${palette.gray9};
+    word-break: keep-all;
+    ${media.small} {
+      font-size: 1rem;
+    }
+  }
+  p {
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: ${palette.gray7};
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    ${media.small} {
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+  .subinfo {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    color: ${palette.gray6};
+    font-size: 0.875rem;
+    ${media.small} {
+      font-size: 0.75rem;
+    }
+    span {
+    }
+    .separator {
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+  .tags-wrapper {
+    margin-bottom: -0.875rem;
+    ${media.small} {
+      margin-bottom: -0.5rem;
+    }
+  }
 `;
 const Block = styled.div`
-  /* width: 20rem; */
+  width: 20rem;
   background: white;
   border-radius: 4px;
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.04);
@@ -46,8 +137,19 @@ const Block = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  ${mediaQuery(1440)} {
+    width: 18rem;
+  }
+  ${mediaQuery(1312)} {
+    width: 15rem;
+  }
+
   ${mediaQuery(944)} {
-    width: calc(50% - 2rem);
+    margin: 0;
+    width: 100%;
+    & + & {
+      margin-top: 1rem;
+    }
   }
   ${mediaQuery(767)} {
     margin: 0;
@@ -57,15 +159,53 @@ const Block = styled.div`
     }
   }
 `;
-
-const Content = styled.div`
+const Top = styled.div`
+  padding: 0.625rem 1rem;
+  border-top: 1px solid ${palette.gray0};
+  display: flex;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  justify-content: center;
+  .userinfo {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    img {
+      object-fit: cover;
+      border-radius: 50%;
+      width: 1.5rem;
+      height: 1.5rem;
+      display: block;
+      margin-right: 0.5rem;
+    }
+    span {
+      color: ${palette.gray6};
+      b {
+        color: ${palette.gray8};
+      }
+    }
+  }
+  .likes {
+    display: flex;
+    align-items: center;
+    svg {
+      width: 0.75rem;
+      height: 0.75rem;
+      margin-right: 0.5rem;
+    }
+  }
+`;
+const Content = styled.div<{ clamp: boolean }>`
   padding: 1rem;
   display: flex;
   flex: 1;
   flex-direction: column;
   h4 {
-    font-size: 1rem;
+    font-size: 1.125rem;
+    
     margin: 0;
+    font-weight:bold;
     margin-bottom: 0.25rem;
     line-height: 1.5;
     ${ellipsis}
@@ -83,7 +223,9 @@ const Content = styled.div`
     overflow-wrap: break-word;
     font-size: 0.875rem;
     line-height: 1.5;
-    /* ${props =>
+    color: ${palette.gray7};
+    margin-bottom: 1.5rem;
+    ${props =>
       props.clamp &&
       css`
         height: 3.9375rem;
@@ -92,15 +234,12 @@ const Content = styled.div`
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
-      `} */
-    /* ${props =>
+      `}
+    ${props =>
       !props.clamp &&
       css`
         height: 15.875rem;
-      `} */
-  
-    color: ${palette.gray7};
-    margin-bottom: 1.5rem;
+      `} 
   }
   .sub-info {
     font-size: 0.75rem;
@@ -112,56 +251,78 @@ const Content = styled.div`
     }
   }
 `;
+const Grid = styled.div`
+  display: flex;
+  margin: -1rem;
+  flex-wrap: wrap;
+  ${mediaQuery(767)} {
+    margin: 0;
+  }
+`;
 
 const StyledLink = styled(Link)`
   display: block;
   color: inherit;
   text-decoration: none;
 `;
-const BlogIndex: React.FC<Props> = ({ data }) => {
-  const siteTitle = data.site.siteMetadata.title;
-  const posts = data.allMarkdownRemark.edges;
 
-  const categories = _.uniq(posts.map(({ node }) => node.frontmatter.category));
+const BlogIndex: React.FC<Props> = ({ data }) => {
+  const posts = data.allMarkdownRemark.edges;
+  // const categories = _.uniq(posts.map(({ node }) => node.frontmatter.category));
   return (
     <>
       <GlobalStyles />
       <MainTemplate>
-        <MainTemplate.Left></MainTemplate.Left>
+        <MainTemplate.Left />
         <MainTemplate.Main>
-          {/* <SEO title="All posts" /> */}
-          <Layout location={window.location} title={siteTitle}>
-            <PostCardBlock>
-              {/* <Bio /> */}
-              {posts.map(({ node }) => {
-                const title = node.frontmatter.title || node.fields.slug;
-                return (
-                  <Block key={node.frontmatter.date}>
-                    <Content>
+          {/*Todo categories */}
+          {/* <MainTopHead categories={categories} /> */}
+          <Grid>
+            {posts.map((data: any, i: number) => {
+              const { node } = data;
+              const title = node.frontmatter.title || node.fields.slug;
+              const cover = get(node.frontmatter, 'image.children.0.fixed', {});
+              return (
+                <PostCardBlock key={i}>
+                  <Block>
+                    <Top>
+                      <Link className="userinfo" to={'/'}>
+                        <img src={cover.src || defaultImage} alt="coverImage" />
+                        <span>
+                          WRITTEN BY <b>s-ong-c</b>
+                        </span>
+                      </Link>
+                    </Top>
+                    <StyledLink to={node.fields.slug}>
+                      <ImageSection
+                        src={cover.src || defaultImage}
+                        alt="post-thumbnail"
+                        widthRatio={1.91}
+                        heightRatio={1}
+                        className="post-thumbnail"
+                      />
+                    </StyledLink>
+                    {/* {cover.src && (
+                    )} */}
+                    <Content clamp={!!cover.src || !!defaultImage}>
                       <StyledLink to={node.fields.slug}>
                         <h4>{title}</h4>
-                        <div className="description-wrapper">
-                          {/* <p
-                            dangerouslySetInnerHTML={{
-                              __html:
-                                node.frontmatter.description || node.excerpt,
-                            }}
-                          /> */}
-                          {/* {post.short_description.replace(/&#x3A;/g, ':')}
-                        {post.short_description.length === 150 && '...'} */}
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: node.frontmatter.slug || node.excerpt,
+                          }}
+                        />
+
+                        <div className="subinfo">
+                          <span>{node.frontmatter.date}</span>
                         </div>
                       </StyledLink>
-                      <div className="sub-info">
-                        <span>{node.frontmatter.date}</span>
-                        <span className="separator">·</span>
-                        <span>{}개의 댓글</span>
-                      </div>
                     </Content>
                   </Block>
-                );
-              })}
-            </PostCardBlock>
-          </Layout>
+                </PostCardBlock>
+              );
+            })}
+          </Grid>
         </MainTemplate.Main>
         <MainTemplate.Right></MainTemplate.Right>
       </MainTemplate>
@@ -193,6 +354,16 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             category
+            image {
+              children {
+                ... on ImageSharp {
+                  fixed(width: 640, height: 300) {
+                    src
+                    srcSet
+                  }
+                }
+              }
+            }
           }
         }
       }

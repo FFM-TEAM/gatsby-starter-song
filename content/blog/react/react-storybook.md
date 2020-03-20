@@ -2,6 +2,7 @@
 title: '[React] StoryBook Tutorial'
 date: 2019-09-10 13:09:88
 category: react
+image: './images/storybook/storybook-0.png'
 ---
 
 ## StoryBook
@@ -148,21 +149,19 @@ import '@storybook/addon-console'
 
 ### `1. 컴포넌트를 작성한다.`
 
-```ts
-import React, { useState, useCallback } from 'react'
-
+```tsx
+import React, { useState, useCallback } from 'react';
 export interface ExampleProps {
   text: string
   flag?: boolean
   action(): void
 }
-
 const Example = (props: ExampleProps) => {
   const { text, flag, action } = props
   const [count, countChg] = useState(0)
-  const countUp = useCallback(() => countChg(prev => prev + 1), [])
-  const countDown = useCallback(() => countChg(prev => prev - 1), [])
-
+  const countUp = useCallback(() => countChg(prev => prev + 1), []);
+  const countDown = useCallback(() => countChg(prev => prev - 1), []);
+  
   return (
     <div>
       {flag && <p>{text}</p>}
@@ -180,16 +179,14 @@ export default Example
 
 ### `2. Story 작성한다.`
 
-```ts
-import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { withInfo } from '@storybook/addon-info'
-import { withKnobs, text, boolean } from '@storybook/addon-knobs'
-import { action } from '@storybook/addon-actions'
-
-import Example from '../Example'
-
-const components = storiesOf('Components', module)
+```tsx
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { withInfo } from '@storybook/addon-info';
+import { withKnobs, text, boolean } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
+import Example from '../Example';
+const components = storiesOf('Components', module);
 components
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
@@ -218,14 +215,13 @@ React 구조와 똑같이 컴포넌트 별 폴더로 관리하면 좋을거 같�
 
 ### 컴포넌트
 
-```ts
-import * as React from 'react'
-import styled from 'styled-components'
-import { MdArrowDropDown } from 'react-icons/md'
+```tsx
+import * as React from 'react';
+import styled from 'styled-components';
+import { MdArrowDropDown } from 'react-icons/md';
 const HeaderUserIconBlock = styled.div`
   ... 생략;
-`
-
+`;
 export type CurrentUser = {
   id: string
   username: string
@@ -233,14 +229,12 @@ export type CurrentUser = {
     thumbnail: string
     display_name: string
   }
-}
-
+};
 export interface HeaderUserIconProps {
   user: CurrentUser
   onClick: () => void
   img?: string
-}
-
+};
 const HeaderUserIcon: React.SFC<HeaderUserIconProps> = ({ onClick, img }) => {
   return (
     <HeaderUserIconBlock onClick={onClick}>
@@ -248,24 +242,22 @@ const HeaderUserIcon: React.SFC<HeaderUserIconProps> = ({ onClick, img }) => {
       <MdArrowDropDown />
     </HeaderUserIconBlock>
   )
-}
+};
 
-export default HeaderUserIcon
+export default HeaderUserIcon;
 ```
 
 ### Story 작성
 
-```ts
-import React from 'react'
-
-import { storiesOf } from '@storybook/react'
-import { withInfo } from '@storybook/addon-info'
-import { defaultThumbnail } from '../../static/images'
-import { withKnobs, object } from '@storybook/addon-knobs'
-import { action } from '@storybook/addon-actions'
-import HeaderUserIcon from './HeaderUserIcon'
-
-const components = storiesOf('Header', module)
+```tsx
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { withInfo } from '@storybook/addon-info';
+import { defaultThumbnail } from '../../static/images';
+import { withKnobs, object } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
+import HeaderUserIcon from './HeaderUserIcon';
+const components = storiesOf('Header', module);
 const User = {
   id: '11',
   username: '송민석',
@@ -273,8 +265,7 @@ const User = {
     thumbnail: 'https://amazonaws.com/Image.jpg',
     display_name: 'songc',
   },
-}
-
+};
 components
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
@@ -291,7 +282,7 @@ components
         user={object('user', User, 'props')}
       ></HeaderUserIcon>
     </>
-  ))
+  ));
 ```
 
 ### Storybook UI
@@ -304,29 +295,22 @@ components
 
 이번에는 컴포넌트는 생략 바로 `Story` 작성
 
-```ts
-import React from 'react'
-
-import { storiesOf } from '@storybook/react'
-import { withInfo } from '@storybook/addon-info'
-import { withKnobs, boolean, object } from '@storybook/addon-knobs'
-import { action } from '@storybook/addon-actions'
-import RoundButton from './RoundButton'
-
-// button style
-const label = 'styles'
+```tsx
+import React from 'react';
+import { storiesOf } from '@storybook/react';
+import { withInfo } from '@storybook/addon-info';
+import { withKnobs, boolean, object } from '@storybook/addon-knobs';
+import { action } from '@storybook/addon-actions';
+import RoundButton from './RoundButton';
+const label = 'styles';
 const defaultValue = {
   marginRight: '1.25rem',
-}
-const groupId = 'state'
-
-// size properties
-const size = 'size'
-const size_defaultValue = 'DEFAULT'
-const size_groupId = 'state'
-
-const components = storiesOf('Components', module)
-
+};
+const groupId = 'state';
+const size = 'size';
+const size_defaultValue = 'DEFAULT';
+const size_groupId = 'state';
+const components = storiesOf('Components', module);
 components
   .addDecorator(withKnobs)
   .addDecorator(withInfo({ inline: true }))
@@ -343,7 +327,6 @@ components
         color={object('color', 'darkGray', 'state')}
         size={object(size, size_defaultValue, size_groupId)}
         style={object(label, defaultValue, groupId) as React.CSSProperties}
-        //   style={{ marginRight: '1.25rem' }}
       >
         새 글 작성
       </RoundButton>
@@ -358,7 +341,7 @@ components
     >
       새 글 작성
     </RoundButton>
-  ))
+  ));
 ```
 
 `@storybook/addon-knobs (object , text, color, ... )참고`
