@@ -5,7 +5,7 @@ import { escapeForUrl } from './utils';
  * @param html
  */
 export function setHeadingId(html: string) {
-  const div = document.createElement('div');
+  const div = window.document.createElement('div');
   div.innerHTML = html;
 
   const h1 = div.querySelectorAll('h1');
@@ -32,7 +32,7 @@ export function setHeadingId(html: string) {
  * @param html
  */
 export function parseHeadings(html: string) {
-  const div = document.createElement('div');
+  const div = window.document.createElement('div');
   div.innerHTML = html;
 
   const elements = Array.from(div.children);
