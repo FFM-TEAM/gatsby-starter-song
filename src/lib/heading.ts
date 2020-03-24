@@ -3,7 +3,7 @@
  * @param html
  */
 export function parseHeadings(html: string) {
-  if (typeof window === 'undefined' || !window.document) {
+  if (typeof document !== `undefined`) {
     const div = document.createElement('div');
     div.innerHTML = html;
 
