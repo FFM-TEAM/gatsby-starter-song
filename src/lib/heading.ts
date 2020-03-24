@@ -3,26 +3,28 @@
  * @param html
  */
 export function parseHeadings(html: string) {
-  const div = window.document.createElement('div');
-  div.innerHTML = html;
+  if (typeof window === 'undefined' || !window.document) {
+    const div = document.createElement('div');
+    div.innerHTML = html;
 
-  const elements = Array.from(div.children);
+    const elements = Array.from(div.children);
 
-  const headings = elements.filter(el => el.tagName.match(/H([1-3])/));
+    const headings = elements.filter(el => el.tagName.match(/H([1-3])/));
 
-  const headingsInfo = headings.map(heading => ({
-    id: heading.id,
-    text: heading.textContent,
-    level: parseInt(heading.tagName.replace('H', ''), 10),
-  }));
+    const headingsInfo = headings.map(heading => ({
+      id: heading.id,
+      text: heading.textContent,
+      level: parseInt(heading.tagName.replace('H', ''), 10),
+    }));
 
-  const minLevel = Math.min(
-    ...Array.from(headingsInfo.map(info => info.level)),
-  );
+    const minLevel = Math.min(
+      ...Array.from(headingsInfo.map(info => info.level)),
+    );
 
-  headingsInfo.forEach(info => {
-    info.level -= minLevel;
-  });
+    headingsInfo.forEach(info => {
+      info.level -= minLevel;
+    });
 
-  return headingsInfo;
+    return headingsInfo;
+  }
 }
