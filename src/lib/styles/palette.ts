@@ -32,8 +32,18 @@ const palette = {
   red7: '#f03e3e',
   red8: '#e03131',
   red9: '#c92a2a',
-
-  blue1: '#0184bc',
+  /* blue */
+  blue0: '#e7f5ff',
+  blue1: '#a5d8ff',
+  blue2: '#a5d8ff',
+  blue3: '#74c0fc',
+  blue4: '#4dabf7',
+  blue5: '#339af0',
+  blue6: '#228be6',
+  blue7: '#1c7ed6',
+  blue8: '#1971c2',
+  blue9: '#1864ab',
+  blue10: '#0184bc',
 };
 
 export const buttonColorMap: {

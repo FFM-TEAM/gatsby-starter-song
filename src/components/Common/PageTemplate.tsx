@@ -6,13 +6,11 @@ import { getScrollTop } from '../../lib/utils';
 const PageTemplateBlock = styled.div``;
 
 interface PageTemplateProps {
-  hideHeader?: boolean;
   style?: React.CSSProperties;
   className?: string;
 }
 
 const PageTemplate: React.FC<PageTemplateProps> = ({
-  hideHeader,
   style,
   className,
   children,

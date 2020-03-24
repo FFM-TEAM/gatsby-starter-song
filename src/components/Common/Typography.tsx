@@ -1,9 +1,9 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import palette from '../../lib/styles/palette';
 import media from '../../lib/styles/media';
 
-const TypographyBlock = styled.div`
+const TypographyBlock = styled.div<{ isAbout?: boolean }>`
   font-size: 1.125rem;
   color: ${palette.gray8};
   line-height: 1.85;
@@ -16,12 +16,10 @@ const TypographyBlock = styled.div`
     }
     code {
       color: #547196;
-      /* border: 1.2px solid #547196; */
       background: #fffbfe;
       margin: 0 0.1em;
       border-radius: 0.3em;
 
-      /* background: #e3fff6; */
       padding-left: 0.25em;
       padding-right: 0.25em;
     }
@@ -39,6 +37,7 @@ const TypographyBlock = styled.div`
     &:hover {
       color: ${palette.teal6};
       text-decoration: underline;
+      text-decoration-style: dashed;
     }
   }
   code {
@@ -93,6 +92,22 @@ const TypographyBlock = styled.div`
   }
 
   ${media.small} {
+    ${props =>
+      props.isAbout &&
+      css`
+        h1 {
+          font-size: 1.75rem;
+        }
+        h2 {
+          font-size: 1.25rem;
+        }
+        h3 {
+          font-size: 1rem;
+        }
+        h4 {
+          font-size: 0.875rem;
+        }
+      `}
     font-size: 1rem;
     h1 {
       font-size: 2.25rem;
@@ -155,10 +170,15 @@ const TypographyBlock = styled.div`
   }
 `;
 
-export interface TypographyProps {}
+export interface TypographyProps {
+  isAbout?: boolean;
+}
 
-const Typography: React.FC<TypographyProps> = ({ children }) => {
-  return <TypographyBlock>{children}</TypographyBlock>;
+const Typography: React.FC<TypographyProps> = ({
+  children,
+  isAbout = false,
+}) => {
+  return <TypographyBlock isAbout={isAbout}>{children}</TypographyBlock>;
 };
 
 export default Typography;

@@ -17,7 +17,7 @@ const MainTopHead: React.FC<MainTopHeadProps> = ({ categories }) => {
       <div className="menu">
         {categories.map(item => {
           return (
-            <MenuItem to="`/${item}`" activeClassName="active">
+            <MenuItem to={`/${item}`} activeClassName="active">
               {item}
               <FiActivity />
             </MenuItem>

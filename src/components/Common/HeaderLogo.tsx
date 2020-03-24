@@ -12,7 +12,7 @@ const createFallbackTitle = (username: string | null) => {
   return `${username}'s 크리에이터`;
 };
 
-const flutter = keyframes`
+export const flutter = keyframes`
   0% {
     transform: rotate(0deg);
   }
@@ -33,7 +33,7 @@ const flutter = keyframes`
   }
   `;
 
-const HeaderLogoBlock = styled(Link)`
+export const HeaderLogoBlock = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;

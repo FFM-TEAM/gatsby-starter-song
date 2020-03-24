@@ -1,9 +1,10 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import HeaderLogo from './HeaderLogo';
+import HeaderLogo, { HeaderLogoBlock } from './HeaderLogo';
 import { breakpoints } from '../../lib/styles/responsive';
 import media from '../../lib/styles/media';
 import zIndexes from '../../lib/styles/zIndexes';
+import { Link } from 'gatsby';
 
 const HeaderBlock = styled.div<{ floating: boolean }>`
   z-index: ${zIndexes.Header};
@@ -19,7 +20,11 @@ const HeaderBlock = styled.div<{ floating: boolean }>`
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    a {
+      text-decoration: none;
+      color: black;
+      font-size: 1.25rem;
+    }
     ${media.large} {
       width: 1024px;
     }
@@ -82,7 +87,9 @@ const Header: React.FC<HeaderProps> = ({ floating, floatingMargin }) => {
           <div className="brand">
             <HeaderLogo logoTitle="songc" />
           </div>
-          <div className="right">about</div>
+          <HeaderLogoBlock to={'/about'}>
+            <div className="right">about</div>
+          </HeaderLogoBlock>
         </div>
       </HeaderBlock>
       {floating && <Placeholder />}

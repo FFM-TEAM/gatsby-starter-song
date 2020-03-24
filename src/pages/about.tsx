@@ -5,12 +5,11 @@ import Typography from '../components/Common/Typography';
 import { MarkdownBlock } from '../templates/blog-post';
 import PageTemplate from '../components/Common/PageTemplate';
 import media from '../lib/styles/media';
-import MainTemplate from '../components/Common/MainTemplate';
 import GlobalStyles from '../GlobalStyles';
 
 const AboutBlock = styled(PageTemplate)``;
 
-const Block = styled.div`
+export const Block = styled.div`
   flex: 1;
   display: flex;
   justify-content: center;
