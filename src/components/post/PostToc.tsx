@@ -81,7 +81,7 @@ export interface PostTocProps {
 
 const PostToc: React.FC<PostTocProps> = ({ html }) => {
   const TOC = parseHeadings(html);
-
+  if (!TOC) return null;
   const [activeId, setActiveId] = useState<null | string>(null);
   const [headingTops, setHeadingTops] = useState<
     | null
