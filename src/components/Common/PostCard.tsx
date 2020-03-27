@@ -299,4 +299,4 @@ const PostCard: React.FC<PostCardProps> = ({ posts }) => {
   );
 };
 
-export default PostCard;
+export default React.memo(PostCard);

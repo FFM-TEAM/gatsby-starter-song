@@ -4,17 +4,9 @@ import _, { get } from 'lodash';
 import PostCard from '../components/Common/PostCard';
 import '../typography.css';
 import MainTemplate from '../components/Common/MainTemplate';
-import styled, { css } from 'styled-components';
-import media, { mediaQuery } from '../lib/styles/media';
-import palette from '../lib/styles/palette';
-import { ellipsis } from '../lib/styles/utils';
-import GlobalStyles from '../GlobalStyles';
-import ImageSection from '../components/Common/ImageSection';
-import { defaultImage } from '../static/images';
+import styled from 'styled-components';
 import Profile from '../components/Common/Profile';
-import MainTopHead from '../components/Common/MainTopHead';
 import Footer from '../components/Common/Footer';
-// import MainTopHead from '../components/Common/MainTopHead';
 
 interface Props {
   data: {
@@ -36,7 +28,7 @@ export const StyledLink = styled(Link)`
 const BlogIndex: React.FC<Props> = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
   return (
-    <GlobalStyles>
+    <>
       <MainTemplate>
         <MainTemplate.Left />
         <MainTemplate.Main>
@@ -48,7 +40,7 @@ const BlogIndex: React.FC<Props> = ({ data }) => {
         </MainTemplate.Right>
       </MainTemplate>
       <Footer />
-    </GlobalStyles>
+    </>
   );
 };
 

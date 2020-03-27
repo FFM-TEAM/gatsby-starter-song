@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PageTemplate from './PageTemplate';
 import media from '../../lib/styles/media';
 import '../../typography.css';
+import GlobalStyles from '../../GlobalStyles';
 const MainTemplateBlock = styled(PageTemplate)`
   main {
     display: flex;
@@ -62,6 +63,7 @@ const MainTemplate: React.FC<MainTemplateProps> & MainTemplateNamespace = ({
 }) => {
   return (
     <MainTemplateBlock>
+      <GlobalStyles />
       <main>{children}</main>
     </MainTemplateBlock>
   );
