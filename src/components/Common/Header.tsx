@@ -85,7 +85,7 @@ const Header: React.FC<HeaderProps> = ({ floating, floatingMargin }) => {
       >
         <div className="wrapper">
           <div className="brand">
-            <HeaderLogo logoTitle="songc" />
+            <HeaderLogo logoTitle="Gatsby" />
           </div>
           <HeaderLogoBlock to={'/about'}>
             <div className="right">about</div>

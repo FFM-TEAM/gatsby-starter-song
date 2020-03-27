@@ -13,6 +13,7 @@ import ImageSection from '../components/Common/ImageSection';
 import { defaultImage } from '../static/images';
 import Profile from '../components/Common/Profile';
 import MainTopHead from '../components/Common/MainTopHead';
+import Footer from '../components/Common/Footer';
 // import MainTopHead from '../components/Common/MainTopHead';
 
 interface Props {
@@ -36,6 +37,7 @@ const BlogIndex: React.FC<Props> = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
   return (
     <>
+      <Footer />
       <GlobalStyles />
       <MainTemplate>
         <MainTemplate.Left />

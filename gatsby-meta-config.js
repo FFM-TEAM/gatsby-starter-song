@@ -1,8 +1,8 @@
 module.exports = {
-  title: `SONGC`,
+  title: `Gatsby stater`,
   description: `Blog posted about ...`,
-  author: `songc`,
-  introduction: `프론트엔드 개발 API 개발 설계.테스트.클린코드. 항상 무언가에 관심이 많음. 
+  author: `Gatsby`,
+  introduction: `I explain with words and code. I explain with words and code. I explain with words and code. 
   `,
   siteUrl: `https://s-ong-c.github.io`, // Your blog site url
   email: 'somony9292@gamil.com',
@@ -17,7 +17,7 @@ module.exports = {
   keywords: [`blog`],
   comment: {
     disqusShortName: '', // Your disqus-short-name. check disqus.com.
-    utterances: 's-ong-c/s-ong-c.github.io', // Your repository for archive comment
+    utterances: 'FFM-TEAM/gatsby-starter-song', // Your repository for archive comment
   },
   configs: {
     countOfInitialPost: 10, // Config your initial count of post
@@ -25,5 +25,5 @@ module.exports = {
   share: {
     facebookAppId: '', // Add facebookAppId for using facebook share feature v3.2
   },
-  ga: 'UA-134332040-1', // Add your google analytics tranking ID
+  ga: '', // Add your google analytics tranking ID
 };
