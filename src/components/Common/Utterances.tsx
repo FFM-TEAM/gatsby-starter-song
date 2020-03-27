@@ -4,9 +4,8 @@ const src = 'https://utteranc.es/client.js';
 
 export interface UtterancesProps {
   repo: string;
-  url: string;
 }
-const Utterances: React.FC<UtterancesProps> = React.memo(({ repo, url }) => {
+const Utterances: React.FC<UtterancesProps> = React.memo(({ repo }) => {
   const conRef = createRef<HTMLDivElement>();
 
   useEffect(() => {
@@ -15,7 +14,7 @@ const Utterances: React.FC<UtterancesProps> = React.memo(({ repo, url }) => {
     const attributes = {
       src,
       repo,
-      'issue-term': url,
+      'issue-term': 'pathname',
       label: 'comments 🙌',
       theme: 'github-light',
       crossOrigin: 'anonymous',

@@ -186,10 +186,7 @@ const BlogPostTemplate = ({ data, pageContext }: Props) => {
               </PreviousNext>
             </Typography>
           </Block>
-          <Utterances
-            repo="s-ong-c/s-ong-c.github.io"
-            url={'https://s-ong-c.github.io'}
-          />
+          <Utterances repo="FFM-TEAM/gatsby-starter-song" />
         </MainTemplate.Main>
         <MainTemplate.Right />
       </MainTemplate>
