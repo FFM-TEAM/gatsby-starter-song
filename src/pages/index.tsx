@@ -36,8 +36,7 @@ export const StyledLink = styled(Link)`
 const BlogIndex: React.FC<Props> = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
   return (
-    <>
-      <GlobalStyles />
+    <GlobalStyles>
       <MainTemplate>
         <MainTemplate.Left />
         <MainTemplate.Main>
@@ -49,7 +48,7 @@ const BlogIndex: React.FC<Props> = ({ data }) => {
         </MainTemplate.Right>
       </MainTemplate>
       <Footer />
-    </>
+    </GlobalStyles>
   );
 };
 
