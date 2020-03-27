@@ -37,7 +37,6 @@ const BlogIndex: React.FC<Props> = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
   return (
     <>
-      <Footer />
       <GlobalStyles />
       <MainTemplate>
         <MainTemplate.Left />
@@ -49,11 +48,12 @@ const BlogIndex: React.FC<Props> = ({ data }) => {
           <Profile />
         </MainTemplate.Right>
       </MainTemplate>
+      <Footer />
     </>
   );
 };
 
-export default BlogIndex;
+export default React.memo(BlogIndex);
 
 export const pageQuery = graphql`
   query {

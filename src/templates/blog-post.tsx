@@ -194,7 +194,7 @@ const BlogPostTemplate = ({ data, pageContext }: Props) => {
   );
 };
 
-export default BlogPostTemplate;
+export default React.memo(BlogPostTemplate);
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
