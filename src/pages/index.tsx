@@ -2,11 +2,12 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import _, { get } from 'lodash';
 import PostCard from '../components/Common/PostCard';
-import '../typography.css';
 import MainTemplate from '../components/Common/MainTemplate';
 import styled from 'styled-components';
 import Profile from '../components/Common/Profile';
 import Footer from '../components/Common/Footer';
+import '../typography.css';
+import GlobalStyles from '../GlobalStyles';
 
 interface Props {
   data: {
@@ -29,6 +30,7 @@ const BlogIndex: React.FC<Props> = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
   return (
     <>
+      <GlobalStyles />
       <MainTemplate>
         <MainTemplate.Left />
         <MainTemplate.Main>
