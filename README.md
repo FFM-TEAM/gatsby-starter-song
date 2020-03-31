@@ -3,13 +3,6 @@
 ## gatsby-template
 
 
-<a href="https://twitter.com/JbeeLjyhanll">
-<img alt="Twitter: JbeeLjyhanll" src="https://img.shields.io/twitter/follow/JbeeLjyhanll.svg?style=social" target="_blank" />
-</a>
-
-[한국어🇰🇷](./README.ko.md)
-
-![screenshot](./assets/screenshot.png)
 
 In this template...
 
@@ -27,12 +20,11 @@ In this template...
 
 ## Demo
 
-- [Default Theme](https://gatsby-starter-bee.netlify.com/)
+- [Default Theme](https://gatsby-starter-songc.netlify.com/)
 
 <details>
   <summary>Use case</summary>
   <p>
-    <img src="./assets/demos.png" alt="demo-image">
     <ul>
       <li>DEMO: https://gatsby-starter-songc.netlify.com/</li>
     </ul>

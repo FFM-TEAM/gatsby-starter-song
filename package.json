@@ -59,7 +59,7 @@
     "prettier": "^1.18.2",
     "typescript": "^3.5.3"
   },
-  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "homepage": "https://github.com/FFM-TEAM/gatsby-starter-song#readme",
   "keywords": [
     "gatsby"
   ],
@@ -67,7 +67,7 @@
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+    "url": "git+https://github.com/FFM-TEAM/gatsby-starter-song.git"
   },
   "scripts": {
     "build": "gatsby build",
