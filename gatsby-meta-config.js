@@ -1,10 +1,10 @@
 module.exports = {
   title: `Gatsby stater`,
   description: `Blog posted about ...`,
-  author: `Gatsby`,
+  author: `[USERNAME]`,
   introduction: `I explain with words and code. I explain with words and code. I explain with words and code. 
   `,
-  siteUrl: `https://s-ong-c.github.io`, // Your blog site url
+  siteUrl: `https://gatsby-starter-songc.netlify.com`,
   email: 'somony9292@gamil.com',
   social: {
     twitter: ``, // Your Twitter account

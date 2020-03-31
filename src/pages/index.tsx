@@ -8,6 +8,7 @@ import Profile from '../components/Common/Profile';
 import Footer from '../components/Common/Footer';
 import '../typography.css';
 import GlobalStyles from '../GlobalStyles';
+import SEO from '../components/seo';
 
 interface Props {
   data: {
@@ -15,6 +16,7 @@ interface Props {
     site: {
       siteMetadata: {
         title: string;
+        siteUrl: string;
       };
     };
   };
@@ -28,8 +30,10 @@ export const StyledLink = styled(Link)`
 
 const BlogIndex: React.FC<Props> = ({ data }) => {
   const posts = data.allMarkdownRemark.edges;
+  const metaData = data.site.siteMetadata;
   return (
     <>
+      <SEO title={'HOME'} />
       <GlobalStyles />
       <MainTemplate>
         <MainTemplate.Left />
@@ -53,6 +57,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        siteUrl
         configs {
           countOfInitialPost
         }

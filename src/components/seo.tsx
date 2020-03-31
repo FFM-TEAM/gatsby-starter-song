@@ -14,9 +14,20 @@ interface Props {
   lang?: string;
   meta?: [];
   title: string;
+  image?: string;
+  isPost?: boolean;
+  pathUrl?: string;
 }
 
-const SEO = ({ description, lang, meta, title }: Props) => {
+const SEO = ({
+  description,
+  isPost,
+  lang,
+  meta,
+  title,
+  image,
+  pathUrl,
+}: Props) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -34,47 +45,26 @@ const SEO = ({ description, lang, meta, title }: Props) => {
   const metaDescription = description || site.siteMetadata.description;
 
   return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-      ].concat(meta || [])}
-    />
+    <Helmet titleTemplate={`%s | ${site.siteMetadata.title}`}>
+      <html lang={lang} />
+      <title lang={lang}>{title}</title>
+      <link rel="canonical" href={site.siteMetadata.siteUrl + pathUrl} />
+
+      {/* 기본 */}
+      <meta name="description" content={description} />
+      {image && <meta name="image" content={image} />}
+
+      {/* Open Graph */}
+      <meta property="og:url" content={site.siteMetadata.siteUrl + pathUrl} />
+      {isPost ? <meta property="og:type" content="article" /> : null}
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      {image && <meta property="og:image" content={image} />}
+
+      {/* Twitter */}
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:creator" content={site.siteMetadata.author} />
+    </Helmet>
   );
 };
 
