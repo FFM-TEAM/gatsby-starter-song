@@ -1,22 +1,23 @@
 # gatsby-starter-song
 
+
+
+
 ## gatsby-template
-
-
 
 In this template...
 
-- 💄 Code highlight with Fira Code font
-- 🧙 CLI Tool
+- 💄 Code highlight with NanumSquareRounds font
 - 😄 Emoji (emojione)
-- 🗣 Social share feature (Twitter, Facebook)
-- 💬 Comment feature (disqus, utterances)
-- ☕ 'Buy me a coffee' service
+- 💬 Comment feature (utterances)
 - 🤖 GA
 - ⭐ Enhance UX
 - ⚙ Configurable
 
-> [About this Template](https://www.gatsbyjs.org/starters/JaeYeopHan/gatsby-starter-bee/)
+![screenshot](./assets/screenshot.png)
+
+![screenshot-mobile](./assets/gatsby-song.png)
+> [About this Template](https://www.gatsbyjs.org/starters/FFM-TEAM/gatsby-starter-song/)
 
 ## Demo
 
@@ -39,7 +40,7 @@ In this template...
 
 ```sh
 # create a new Gatsby site using the blog starter
-npx gatsby new my-blog-starter https://github.com/JaeYeopHan/gatsby-starter-bee
+$ npx gatsby new my-blog-starter https://github.com/FFM-team/gatsby-starter-song
 ```
 
 > If you are not using `npx`, following [Gatsby Getting Started](https://www.gatsbyjs.org/docs/quick-start)
@@ -68,7 +69,6 @@ You can write...
 
 #### Support script for creating new post
 
-![cli-tool-example](assets/cli-tool-example.gif)
 
 ```sh
 npm run post
@@ -136,7 +136,7 @@ src
 
 ### 🎨 Style
 
-You can customize color in `src/styles` directory.
+You can customize color in `src/lib/styles` directory.
 
 ```sh
 │    ├── styles
@@ -152,20 +152,20 @@ You can customize color in `src/styles` directory.
 
 ### 🍭 Tips (You can change...)
 
-- Profile image! (replace file in `/content/assets/profile.png`)
+- Profile image! (replace file in `/content/assets/profile.jpg`)
 - Favicon image! (replace file in `/content/assets/felog.png`)
-- Header gradient! (\$theme-gradient `/styles/variables.scss`)
+- Header UserName 
 - Utterances repository! (replace repository address in `/gatsby-meta-config.js`)
   - ⚠️ Please check, this guide(https://utteranc.es/)
 
 
-## 🤔 If...
+## 🤔 currently  writing in the Medium ...
 
 If you are currently writing in the Medium, consider migration with [medium-to-own-blog](https://github.com/mathieudutour/medium-to-own-blog)!
 
-## :bug: Bug reporting
+## :bug: Bug reporting Issue
 
-[Issue](https://github.com/JaeYeopHan/gatsby-starter-bee/issues)
+[Issue](https://github.com/FFM-TEAM/gatsby-starter-song/issues)
 
 ## 🎁 Contributing
 
