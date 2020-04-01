@@ -8,11 +8,29 @@ import { defaultImage } from '../../static/images';
 import { get } from 'lodash';
 import { ellipsis } from '../../lib/styles/utils';
 const PostCardBlock = styled.div`
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   ${media.small} {
     padding-top: 2rem;
     padding-bottom: 2rem;
+  }
+
+  ${mediaQuery(1440)} {
+    width: 18rem;
+  }
+  ${mediaQuery(1312)} {
+    width: 20rem;
+  }
+
+  ${mediaQuery(944)} {
+    width: 20rem;
+  }
+  ${mediaQuery(767)} {
+    margin: 0;
+    width: 100%;
+    & + & {
+      margin-top: 1rem;
+    }
   }
 
   & > a {
@@ -246,9 +264,10 @@ export const StyledLink = styled(Link)`
 `;
 export interface PostCardProps {
   posts: any;
+  author: string;
 }
 
-const PostCard: React.FC<PostCardProps> = ({ posts }) => {
+const PostCard: React.FC<PostCardProps> = ({ posts, author }) => {
   return (
     <PostCardBlock>
       <Grid>
@@ -263,7 +282,7 @@ const PostCard: React.FC<PostCardProps> = ({ posts }) => {
                   <Link className="userinfo" to={'/'}>
                     <img src={cover.src || defaultImage} alt="coverImage" />
                     <span>
-                      WRITTEN BY <b>s-ong-c</b>
+                      WRITTEN BY <b>{author}</b>
                     </span>
                   </Link>
                 </Top>

@@ -17,6 +17,7 @@ interface Props {
       siteMetadata: {
         title: string;
         siteUrl: string;
+        author: string;
       };
     };
   };
@@ -39,7 +40,7 @@ const BlogIndex: React.FC<Props> = ({ data }) => {
         <MainTemplate.Left />
         <MainTemplate.Main>
           {/*Todo categories */}
-          <PostCard posts={posts} />
+          <PostCard posts={posts} author={metaData.author} />
         </MainTemplate.Main>
         <MainTemplate.Right>
           <Profile />
@@ -57,6 +58,7 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        author
         siteUrl
         configs {
           countOfInitialPost

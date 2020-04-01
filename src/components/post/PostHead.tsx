@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import media from '../../lib/styles/media';
 import PostResponsive from './PostResponsive';
 import palette from '../../lib/styles/palette';
-
+import Image from 'gatsby-image';
 const PostHeadBlock = styled(PostResponsive)`
   margin-top: 5.5rem;
 
@@ -96,7 +96,7 @@ export interface PostHeadProps {
   toc: React.ReactNode;
   subject: string;
   date: string;
-  image: string;
+  image: any;
   siteMetadata: any;
 }
 
@@ -116,7 +116,17 @@ const PostHead: React.FC<PostHeadProps> = ({
         <h4>{introduction}</h4>
         <SubInfo>
           <div className="information">
-            <img src={image} alt="thumbnailImage" />
+            <Image
+              className="author-image"
+              fixed={image}
+              alt={author}
+              style={{
+                width: `3rem`,
+                height: `3rem`,
+                marginRight: `0.75rem`,
+                borderRadius: `100%`,
+              }}
+            />
             <span className="username">{author}</span>
             <span className="separator">&middot;</span>
             <span>{date}</span>

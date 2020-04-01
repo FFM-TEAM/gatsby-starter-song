@@ -14,6 +14,7 @@ import PostHead from '../components/post/PostHead';
 import PostToc from '../components/post/PostToc';
 import Utterances from '../components/Common/Utterances';
 import palette from '../lib/styles/palette';
+import Footer from '../components/Common/Footer';
 
 interface Props {
   data: {
@@ -149,7 +150,7 @@ const BlogPostTemplate = ({ data, pageContext }: Props) => {
           <PostHead
             subject={post.frontmatter.title}
             date={post.frontmatter.date}
-            image={childImageSharp.fixed.src}
+            image={childImageSharp.fixed}
             siteMetadata={siteMetadata}
             toc={<PostToc html={post.html} />}
           />
@@ -187,6 +188,7 @@ const BlogPostTemplate = ({ data, pageContext }: Props) => {
             </Typography>
           </Block>
           <Utterances repo="FFM-TEAM/gatsby-starter-song" />
+          <Footer />
         </MainTemplate.Main>
         <MainTemplate.Right />
       </MainTemplate>
@@ -198,7 +200,7 @@ export default React.memo(BlogPostTemplate);
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-    avatar: file(absolutePath: { regex: "/songc_profile.jpg/" }) {
+    avatar: file(absolutePath: { regex: "/profile.jpg/" }) {
       childImageSharp {
         fixed(width: 50, height: 50) {
           ...GatsbyImageSharpFixed
