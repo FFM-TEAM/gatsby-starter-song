@@ -12,7 +12,6 @@ Welcome, Gatsby! This starter is full-package for your new blog!
 ## 1. Support Two frontmatter
 
 ---
-
 title: 'Welcome songc starter'<br>
 date: 2020-03-06 16:21:13<br>
 category: 'development'

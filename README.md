@@ -16,7 +16,7 @@ In this template...
 
 ![screenshot](./assets/screenshot.png)
 
-![screenshot-mobile](./assets/gatsby-song.png){: width="300" height="600"}
+<img src="./assets/gatsby-song.png" width="300" height="600">
 
 > [About this Template](https://www.gatsbyjs.org/starters/FFM-TEAM/gatsby-starter-song/)
 
