@@ -83,7 +83,7 @@ const Header: React.FC<HeaderProps> = ({ floating, floatingMargin }) => {
             </HeaderLogoBlock>
             <div>
               <a
-                href="https://github.com/FFM-TEAM/https://github.com/FFM-TEAM/gatsby-starter-song"
+                href="https://github.com/FFM-TEAM/gatsby-starter-song"
                 className="github"
                 aria-label="GitHub"
               >
