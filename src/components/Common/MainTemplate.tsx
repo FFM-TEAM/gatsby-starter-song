@@ -26,20 +26,13 @@ const MainTemplateBlock = styled(PageTemplate)`
 `;
 export interface MainTemplateProps {}
 type MainTemplateNamespace = {
-  Left: typeof Left;
   Main: typeof Main;
   Right: typeof Right;
 };
-const Left = styled.div`
-  width: 192px;
-  ${media.medium} {
-    display: none;
-  }
-`;
 const Main = styled.div`
   flex: 1;
-  width: 1200px;
-  ${media.large} {
+  /* width: 1200px; */
+  /* ${media.large} {
     width: 526px;
   }
   ${media.medium} {
@@ -49,9 +42,14 @@ const Main = styled.div`
     width: 100%;
     padding-left: 1rem;
     padding-right: 1rem;
+  } */
+  ${media.small} {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 `;
-const Right = styled.div`
+const Right = styled.aside`
   width: 240px;
   ${media.medium} {
     display: none;
@@ -69,6 +67,5 @@ const MainTemplate: React.FC<MainTemplateProps> & MainTemplateNamespace = ({
   );
 };
 MainTemplate.Main = Main;
-MainTemplate.Left = Left;
 MainTemplate.Right = Right;
 export default MainTemplate;

@@ -9,6 +9,7 @@ import Footer from '../components/Common/Footer';
 import '../typography.css';
 import GlobalStyles from '../GlobalStyles';
 import SEO from '../components/seo';
+import PageResponsive from '../components/Common/PageResponsive';
 
 interface Props {
   data: {
@@ -36,16 +37,17 @@ const BlogIndex: React.FC<Props> = ({ data }) => {
     <>
       <SEO title={'HOME'} />
       <GlobalStyles />
-      <MainTemplate>
-        <MainTemplate.Left />
-        <MainTemplate.Main>
-          {/*Todo categories */}
-          <PostCard posts={posts} author={metaData.author} />
-        </MainTemplate.Main>
-        <MainTemplate.Right>
-          <Profile />
-        </MainTemplate.Right>
-      </MainTemplate>
+      <PageResponsive>
+        <MainTemplate>
+          <MainTemplate.Main>
+            {/*Todo categories */}
+            <PostCard posts={posts} author={metaData.author} />
+          </MainTemplate.Main>
+          <MainTemplate.Right>
+            <Profile />
+          </MainTemplate.Right>
+        </MainTemplate>
+      </PageResponsive>
       <Footer />
     </>
   );

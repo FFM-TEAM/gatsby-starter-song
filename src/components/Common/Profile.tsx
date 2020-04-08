@@ -2,12 +2,16 @@ import * as React from 'react';
 import styled from 'styled-components';
 import SocialIcon from './SocialIcon';
 import palette from '../../lib/styles/palette';
-import media from '../../lib/styles/media';
+import media, { mediaQuery } from '../../lib/styles/media';
 import { graphql, StaticQuery, Link } from 'gatsby';
 import Sticky from './Sticky';
 import Image from 'gatsby-image';
 
 const ProfileBlock = styled.div`
+  width: 15rem;
+  ${mediaQuery(1440)} {
+    width: 12rem;
+  }
   margin-top: 0.25rem;
   padding-left: 1rem;
   padding: 1rem;
@@ -49,7 +53,7 @@ export interface ProfileProps {}
 
 const Profile: React.FC<ProfileProps> = props => {
   return (
-    <Sticky top={90}>
+    <Sticky top={118}>
       <StaticQuery
         query={bioQuery}
         render={data => {

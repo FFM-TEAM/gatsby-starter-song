@@ -8,22 +8,16 @@ import { defaultImage } from '../../static/images';
 import { get } from 'lodash';
 import { ellipsis } from '../../lib/styles/utils';
 const PostCardBlock = styled.div`
+  width: 20rem;
+  display: flex;
   padding-top: 2rem;
   padding-bottom: 2rem;
   ${media.small} {
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
-
-  ${mediaQuery(1440)} {
-    width: 18rem;
-  }
-  ${mediaQuery(1312)} {
-    width: 20rem;
-  }
-
   ${mediaQuery(944)} {
-    width: 20rem;
+    width: calc(50% - 2rem);
   }
   ${mediaQuery(767)} {
     margin: 0;
@@ -123,7 +117,7 @@ const PostCardBlock = styled.div`
   }
 `;
 const Block = styled.div`
-  width: 18rem;
+  flex: 1;
   background: white;
   border-radius: 4px;
   box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.04);
@@ -139,6 +133,7 @@ const Block = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
+
   ${mediaQuery(1440)} {
     width: 18rem;
   }
@@ -269,52 +264,50 @@ export interface PostCardProps {
 
 const PostCard: React.FC<PostCardProps> = ({ posts, author }) => {
   return (
-    <PostCardBlock>
-      <Grid>
-        {posts.map((data: any, i: number) => {
-          const { node } = data;
-          const title = node.frontmatter.title || node.fields.slug;
-          const cover = get(node.frontmatter, 'image.children.0.fixed', {});
-          return (
-            <PostCardBlock key={i}>
-              <Block>
-                <Top>
-                  <Link className="userinfo" to={'/'}>
-                    <img src={cover.src || defaultImage} alt="coverImage" />
-                    <span>
-                      WRITTEN BY <b>{author}</b>
-                    </span>
-                  </Link>
-                </Top>
+    <Grid>
+      {posts.map((data: any, i: number) => {
+        const { node } = data;
+        const title = node.frontmatter.title || node.fields.slug;
+        const cover = get(node.frontmatter, 'image.children.0.fixed', {});
+        return (
+          <PostCardBlock key={i}>
+            <Block>
+              <Top>
+                <Link className="userinfo" to={'/'}>
+                  <img src={cover.src || defaultImage} alt="coverImage" />
+                  <span>
+                    WRITTEN BY <b>{author}</b>
+                  </span>
+                </Link>
+              </Top>
+              <StyledLink to={node.fields.slug}>
+                <ImageSection
+                  src={cover.src || defaultImage}
+                  alt="post-thumbnail"
+                  widthRatio={1.91}
+                  heightRatio={1}
+                  className="post-thumbnail"
+                />
+              </StyledLink>
+              <Content clamp={!!cover.src || !!defaultImage}>
                 <StyledLink to={node.fields.slug}>
-                  <ImageSection
-                    src={cover.src || defaultImage}
-                    alt="post-thumbnail"
-                    widthRatio={1.91}
-                    heightRatio={1}
-                    className="post-thumbnail"
+                  <h4>{title}</h4>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: node.frontmatter.slug || node.excerpt,
+                    }}
                   />
-                </StyledLink>
-                <Content clamp={!!cover.src || !!defaultImage}>
-                  <StyledLink to={node.fields.slug}>
-                    <h4>{title}</h4>
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html: node.frontmatter.slug || node.excerpt,
-                      }}
-                    />
 
-                    <div className="subinfo">
-                      <span>{node.frontmatter.date}</span>
-                    </div>
-                  </StyledLink>
-                </Content>
-              </Block>
-            </PostCardBlock>
-          );
-        })}
-      </Grid>
-    </PostCardBlock>
+                  <div className="subinfo">
+                    <span>{node.frontmatter.date}</span>
+                  </div>
+                </StyledLink>
+              </Content>
+            </Block>
+          </PostCardBlock>
+        );
+      })}
+    </Grid>
   );
 };
 

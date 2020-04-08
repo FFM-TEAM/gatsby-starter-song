@@ -139,12 +139,10 @@ const BlogPostTemplate = ({ data, pageContext }: Props) => {
   const { previous, next } = pageContext;
   const markup = { __html: post.html };
   const codeTheme = 'atom-one-light';
-
   return (
     <>
       <GlobalStyles />
       <MainTemplate>
-        <MainTemplate.Left></MainTemplate.Left>
         <MainTemplate.Main>
           <SEO title={post.frontmatter.title} />
           <PostHead
@@ -162,7 +160,7 @@ const BlogPostTemplate = ({ data, pageContext }: Props) => {
               />
 
               <PreviousNext>
-                {previous && (
+                {previous && previous.frontmatter.title !== 'about' && (
                   <Link to={previous.fields.slug}>
                     <div className="card">
                       <div className="name">
