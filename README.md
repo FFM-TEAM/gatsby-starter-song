@@ -132,7 +132,6 @@ src
 ├── lib
 └── templates
 └── typography.css
-
 ```
 
 ### 🎨 Style
